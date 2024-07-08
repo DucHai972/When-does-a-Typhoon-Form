@@ -1,8 +1,12 @@
 import argparse
 import numpy as np
-from sklearn.metrics import precision_score, recall_score, f1_score
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix
 from utils.model_loader import load_user_model
 from utils.test_set_loader import load_test_set
+from utils.label_loader import create_labels
 
 # Parse command-line arguments
 parser = argparse.ArgumentParser(description="Select a model to use.")
@@ -18,13 +22,11 @@ load_test_set()
 test_set_path = './data/test_set.npy'
 test_set = np.load(test_set_path)
 
-num_samples = test_set.shape[0]  # Assuming test_set is a 2D or 3D array, adjust if necessary
-labels = create_labels(model_name, num_samples=num_samples)
-
-# Your additional code to use the model and test set...
+labels = create_labels(model_name)
 print("Model and test set loaded successfully.")
 
 predictions = model.predict(test_set)
+predictions = (predictions > 0.5).astype(int)
 
 # Calculate metrics
 precision_0 = precision_score(labels, predictions, pos_label=0)
@@ -49,3 +51,41 @@ with open(result_path, 'w') as f:
     f.write(f'F1 score for label 1: {f1_1}\n')
 
 print(f"Metrics calculated and written to {result_path}")
+
+# Plotting metrics for label 0
+metrics_0 = [precision_0, recall_0, f1_0]
+labels_0 = ['Precision', 'Recall', 'F1 Score']
+
+plt.figure(figsize=(8, 6))
+plt.bar(labels_0, metrics_0, color='blue')
+plt.ylim(0, 1)
+plt.title('Performance Metrics for Label 0')
+plt.ylabel('Score')
+plt.savefig(f'{result_dir}/metrics_label_0.png')
+plt.close()
+
+# Plotting metrics for label 1
+metrics_1 = [precision_1, recall_1, f1_1]
+labels_1 = ['Precision', 'Recall', 'F1 Score']
+
+plt.figure(figsize=(8, 6))
+plt.bar(labels_1, metrics_1, color='green')
+plt.ylim(0, 1)
+plt.title('Performance Metrics for Label 1')
+plt.ylabel('Score')
+plt.savefig(f'{result_dir}/metrics_label_1.png')
+plt.close()
+
+print("Plots saved to the result directory")
+
+# Plotting confusion matrix
+cm = confusion_matrix(labels, predictions)
+plt.figure(figsize=(8, 6))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Predicted 0', 'Predicted 1'], yticklabels=['Actual 0', 'Actual 1'])
+plt.title('Confusion Matrix')
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.savefig(f'{result_dir}/confusion_matrix.png')
+plt.close()
+
+print("Confusion matrix plot saved to the result directory")    
