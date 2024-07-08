@@ -48,12 +48,12 @@ To run the main script and select a model, use the following command:
 python main.py --model <model_name>
 ```
 Replace <model_name> with one of the following options:
-resnet_t2.h5
-resnet_t4.h5
-resnet_t5.h5
-resnet_t8.h5
-resnet_t12.h5
-resnet_t16.h5
+resnet_t2.h5,
+resnet_t4.h5,
+resnet_t5.h5,
+resnet_t8.h5,
+resnet_t12.h5,
+resnet_t16.h5.
 
 For example, to use resnet_t2.h5, you would run:
 ```bash
