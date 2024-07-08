@@ -1,10 +1,10 @@
 import gdown
+import os
 
 def load_test_set():
-    # Google Drive URL of the .npy file
-    drive_url = 'https://drive.google.com/uc?id=1UAsJ6LESJHLaw8cATerGZ7oAFAUp99Th'
+    model_drive_id = '1UAsJ6LESJHLaw8cATerGZ7oAFAUp99Th'
+    drive_url = f'https://drive.google.com/uc?id={model_drive_id}'
     
-    # Local path where the file will be saved
     output_path = './data/test_set.npy'
     
     # Check if the file already exists
@@ -17,5 +17,5 @@ def load_test_set():
         print(f"{output_path} already exists. Skipping download.")
 
 if __name__ == '__main__':
-    download_test_set()
+    load_test_set()
 
