@@ -81,8 +81,8 @@ This command will perform the following tasks:
 5. **Save Evaluation Metrics**: The evaluation metrics will be saved to the `./result/` directory.
 
 ## Results
-The results of the model's performance, including precision, recall, and F1 score for both labels, will be saved to ./result/ as:
-- File .txt for detailed metrics.
+The results of the model's performance, including precision, recall, and F1 score for both labels, will be saved to `./result/` as:
+- File `.txt` for detailed metrics.
 - Image graph of model performance on label 1 and 0.
 - Confusion matrix.
 
