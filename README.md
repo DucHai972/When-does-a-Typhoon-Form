@@ -5,7 +5,7 @@ This repository contains the code and resources for our paper on typhoon predict
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Test set](#testset)
+- [Test set](#test-set)
 - [Models](#models)
 - [Requirements](#requirements)
 - [Setup](#setup)
