@@ -72,15 +72,17 @@ For example, to use resnet_t2.h5, you would run:
 python main.py --model resnet_t2.h5
 ```
 
-This command will:
-- Load the specified model.
-- Verify the existence of the test set file. If it doesn't exist, the command will create the necessary directories and download the file.
-- Load the test set into test_set and preprocess it (feature enrichment and normalization).
-- Create labels y with a shape matching the number of samples in the test set.
-- Calculate precision, recall, and F1 score for the labels.
-- Write the evaluation metrics to the ./result/ directory.
-- Print a confirmation message indicating that the metrics have been calculated and saved to the file.
+This command will perform the following tasks:
+
+1. **Load the Specified Model**: The model specified by the user will be loaded.
+2. **Load and Preprocess the Test Set**: The test set will be loaded into `test_set`, followed by feature enrichment and normalization.
+3. **Create Labels**: Labels `y` will be generated that matches with the positive definition of specific model.
+4. **Calculate Metrics**: Precision, recall, and F1 score will be calculated for the labels.
+5. **Save Evaluation Metrics**: The evaluation metrics will be saved to the `./result/` directory.
 
 ## Results
-The results of the model's performance, including precision, recall, and F1 score for both labels, will be saved to ./result/.
+The results of the model's performance, including precision, recall, and F1 score for both labels, will be saved to ./result/ as:
+- File .txt for detailed metrics.
+- Image graph of model performance on label 1 and 0.
+- Confusion matrix.
 
