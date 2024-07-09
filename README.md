@@ -30,8 +30,8 @@ pip install -r requirements.txt
 ## Setups
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/DucHai972/When-does-a-Typhoon-Form.git
+cd When-does-a-Typhoon-Form
 ```
 
 2. Install the required packages:
